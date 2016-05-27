@@ -5,4 +5,4 @@
 */
 
 var { NativeModules } = require('react-native');
-module.exports = NativeModules.ReactAudio;
+module.exports = NativeModules.AudioPlayer;

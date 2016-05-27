@@ -1,18 +1,76 @@
 {
-  "name": "react-native-player",
-  "version": "0.0.9",
-  "description": "Media player for react-native",
-  "main": "index.js",
-  "scripts": {
-    "test": "npm test"
+  "_args": [
+    [
+      "react-native-player@0.0.9",
+      "C:\\ListenIn"
+    ]
+  ],
+  "_from": "react-native-player@0.0.9",
+  "_id": "react-native-player@0.0.9",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/react-native-player",
+  "_nodeVersion": "4.2.1",
+  "_npmUser": {
+    "email": "xeodou@gmail.com",
+    "name": "xeodou"
   },
-  "repository": "git@github.com:xeodou/react-native-player.git",
+  "_npmVersion": "3.3.10",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "react-native-player",
+    "raw": "react-native-player@0.0.9",
+    "rawSpec": "0.0.9",
+    "scope": null,
+    "spec": "0.0.9",
+    "type": "version"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/react-native-player/-/react-native-player-0.0.9.tgz",
+  "_shasum": "be5247f3a8a2fccf53828accc31dd7e09d353401",
+  "_shrinkwrap": null,
+  "_spec": "react-native-player@0.0.9",
+  "_where": "C:\\ListenIn",
+  "author": {
+    "name": "xeodou@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/xeodou/react-native-player/issues"
+  },
+  "dependencies": {},
+  "description": "Media player for react-native",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "be5247f3a8a2fccf53828accc31dd7e09d353401",
+    "tarball": "https://registry.npmjs.org/react-native-player/-/react-native-player-0.0.9.tgz"
+  },
+  "gitHead": "0f7b198713f129f095cf0e3b8a0dfc63791cd009",
+  "homepage": "https://github.com/xeodou/react-native-player#readme",
   "keywords": [
     "react-native",
     "android",
     "TarsosDSP"
   ],
-  "author": "xeodou@gmail.com",
   "license": "MIT",
-  "devDependencies": {}
+  "main": "index.js",
+  "maintainers": [
+    {
+      "email": "xeodou@gmail.com",
+      "name": "xeodou"
+    }
+  ],
+  "name": "react-native-player",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/xeodou/react-native-player.git"
+  },
+  "scripts": {
+    "test": "npm test"
+  },
+  "version": "0.0.9"
 }
