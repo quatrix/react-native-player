@@ -214,7 +214,7 @@ public class AudioPlayer extends ReactContextBaseJavaModule implements ExoPlayer
                 player = null;
                 sendEvent("end", params);
                 if(mCallback!=null) {
-                    mCallback.invoke(null);
+                    mCallback.invoke(0);
                     mCallback = null;
                 }
                 break;
