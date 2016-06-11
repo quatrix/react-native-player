@@ -9,6 +9,7 @@ package com.xeodou.rctplayer;
 import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.facebook.infer.annotation.Assertions;
 import com.facebook.react.bridge.Arguments;
@@ -247,8 +248,11 @@ public class AudioPlayer extends ReactContextBaseJavaModule implements ExoPlayer
         WritableMap params = Arguments.createMap();
         params.putString("msg", error.getMessage());
         sendEvent("error", params);
+
         if(mCallback!=null) {
-            mCallback.invoke(params);
+            WritableMap p = Arguments.createMap(); // can't send same map twice
+            p.putString("msg", error.getMessage());
+            mCallback.invoke(p);
             mCallback = null;
         }
 
