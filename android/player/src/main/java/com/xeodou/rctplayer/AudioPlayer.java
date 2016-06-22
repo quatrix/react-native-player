@@ -37,6 +37,7 @@ public class AudioPlayer extends ReactContextBaseJavaModule implements ExoPlayer
 
     private static final int BUFFER_SEGMENT_SIZE = 64 * 1024;
     private static final int BUFFER_SEGMENT_COUNT = 256;
+    public static final String PLAYER_STATE = "PlayerState";
 
 
     private ExoPlayer player = null;
@@ -125,12 +126,12 @@ public class AudioPlayer extends ReactContextBaseJavaModule implements ExoPlayer
     }
 
     @ReactMethod
-    public void play(String url, final Callback callback) {
+    public void play(String url) {
         if (player != null ) {
             player.release();
             player = null;
         }
-        mCallback = callback;
+
         player = ExoPlayer.Factory.newInstance(1);
         playerControl = new PlayerControl(player);
 
@@ -205,15 +206,19 @@ public class AudioPlayer extends ReactContextBaseJavaModule implements ExoPlayer
     @Override
     public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
         WritableMap params = Arguments.createMap();
+        Log.d("vova", "onPlayerStateChanged: " + playbackState);
+
         switch (playbackState) {
             // event list from official demo example
             case ExoPlayer.STATE_BUFFERING:
-                sendEvent("buffering", params);
+                params.putString("type", "PLAYER_STATE_BUFFERING");
+                sendEvent(PLAYER_STATE, params);
                 break;
             case ExoPlayer.STATE_ENDED:
                 player.release();
                 player = null;
-                sendEvent("end", params);
+                params.putString("type", "PLAYER_STATE_FINISHED");
+                sendEvent(PLAYER_STATE, params);
                 if(mCallback!=null) {
                     mCallback.invoke(0);
                     mCallback = null;
@@ -226,7 +231,8 @@ public class AudioPlayer extends ReactContextBaseJavaModule implements ExoPlayer
                 sendEvent("preparing", params);
                 break;
             case ExoPlayer.STATE_READY:
-                sendEvent("ready", params);
+                params.putString("type", "PLAYER_STATE_PLAYING");
+                sendEvent(PLAYER_STATE, params);
                 break;
         }
     }
@@ -236,6 +242,7 @@ public class AudioPlayer extends ReactContextBaseJavaModule implements ExoPlayer
         // to make sure media is loaded
         WritableMap params = Arguments.createMap();
         sendEvent("loadCompleted", params);
+        Log.d("vova", "onLoadCompleted");
     }
 
     @Override
@@ -247,7 +254,7 @@ public class AudioPlayer extends ReactContextBaseJavaModule implements ExoPlayer
     public void onPlayerError(ExoPlaybackException error) {
         WritableMap params = Arguments.createMap();
         params.putString("msg", error.getMessage());
-        sendEvent("error", params);
+        sendEvent(PLAYER_STATE, params);
 
         if(mCallback!=null) {
             WritableMap p = Arguments.createMap(); // can't send same map twice
