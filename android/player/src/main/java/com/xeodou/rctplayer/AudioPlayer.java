@@ -206,7 +206,6 @@ public class AudioPlayer extends ReactContextBaseJavaModule implements ExoPlayer
     @Override
     public void onPlayerStateChanged(boolean playWhenReady, int playbackState) {
         WritableMap params = Arguments.createMap();
-        Log.d("vova", "onPlayerStateChanged: " + playbackState);
 
         switch (playbackState) {
             // event list from official demo example
@@ -232,6 +231,7 @@ public class AudioPlayer extends ReactContextBaseJavaModule implements ExoPlayer
                 break;
             case ExoPlayer.STATE_READY:
                 params.putString("type", "PLAYER_STATE_PLAYING");
+                params.putDouble("duration", playerControl.getDuration());
                 sendEvent(PLAYER_STATE, params);
                 break;
         }
